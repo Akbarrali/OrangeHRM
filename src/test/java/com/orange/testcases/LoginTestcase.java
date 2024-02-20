@@ -1,6 +1,7 @@
 package com.orange.testcases;
 
 import org.testng.Assert;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -29,23 +30,30 @@ public class LoginTestcase extends BaseClass{
 	@Test (priority = 0)
 	public void verifyLoginPageUITest()
 	{
-		String loginURL = login.verifyLofinPage();
-		Assert.assertEquals(loginURL , "https://opensource-demo.orangehrmlive.com/web/index.php/auth/login");
+		boolean loginURL = login.verifyLofinPage();
+		Assert.assertTrue(loginURL);
 	}
 	
-	//@Test (priority = 1)
+	@Test (priority = 1)
 	public void validateLoginFunctionality()
 	{
-		String NavigatetoDashboard = login.loginWithValidCredentials();
-		Assert.assertEquals(NavigatetoDashboard, "Dashboard");
+		String NavigatetoDashboard = login.loginWithValidCredentials(prop.getProperty("username"), prop.getProperty("password"));
+		Assert.assertEquals(NavigatetoDashboard, testdata.getProperty("DashboardTitle"));
 	}
 	
-	//@Test (priority = 3)
+	
+	@Test (priority = 2)
 	public void logouttest()
 	{
-		validateLoginFunctionality();
 		boolean logoutcheck = login.logout(3);
 		Assert.assertTrue(logoutcheck);		
+	}
+	
+	
+	@AfterClass 
+	public void tearDown1()
+	{
+		driver.quit();
 	}
 	
 	

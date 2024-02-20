@@ -123,6 +123,13 @@ import ru.yandex.qatools.ashot.AShot;
 			element.sendKeys(val);
 		}
 		
+		public static void isselected(WebDriver driver, By locator)
+		{
+			WebElement element = explicitwait(driver, locator);
+			element.isSelected();
+		}
+		
+		
 		public static void click(WebDriver driver, By locator) {
 			WebElement element = explicitwaitclickable(driver, locator);
 //			try {

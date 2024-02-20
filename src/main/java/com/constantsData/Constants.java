@@ -12,13 +12,20 @@ public class Constants {
 	
 	public static final String LOGINPAGE_URL = "https://staging.ocgo.us/login";
 	
+	public static final String PROJECTPATH = System.getProperty("user.dir");
+	
+	public static final String EXTENTREPORT_PATH = File.separator + "test-output" + File.separator + "ExtentReports" + File.separator + "ExtentReport.html";
+	
 	public static final String DATA_PROPERTIES_PATH = File.separator + "src" + File.separator + "main" + File.separator + "java" + File.separator +  "com" + 
 	                                                  File.separator + "config" + File.separator + "properties" + File.separator + "data.properties";
 	
+	public static final String TESTDATA_PROPERTIES_PATH = File.separator + "src" + File.separator + "main" + File.separator + "java" + File.separator +  "com" + 
+                                                          File.separator + "orange" + File.separator + "testdata" + File.separator + "Testdata.properties";
+
 	
-	
-	
-	
+	public static final String CONFIGDATA_PROPERTY_FILEPATH = File.separator + "src" + File.separator + "main"
+			+ File.separator + "java" + File.separator + "com" + File.separator + "config" + File.separator
+			+ "properties" + File.separator + "data.properties";
 	
 	
 	

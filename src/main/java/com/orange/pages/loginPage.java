@@ -4,19 +4,20 @@ import java.util.List;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+
 import com.orange.base.BaseClass;
 import com.orange.utility.utility;
-
-
 
 public class loginPage extends BaseClass{
 	
 	By logo = By.xpath("//div[@class='orangehrm-login-branding']");
 	By username = By.name("username"); 
 	By password = By.name("password");
+	By logintitle = By.xpath("//h5[text()='Login']");
 	By login = By.xpath("//button[@type='submit']");
-	By dashboardtitle = By.xpath("//span[@class='oxd-topbar-header-breadcrumb']");
-	By logout = By.xpath("//ul[@class='oxd-dropdown-menu']/li");
+	By dashboardtitle = By.xpath("//h6[text()='Dashboard']");
+	By profile = By.xpath("//p[@class='oxd-userdropdown-name']");
+	By logoutOption = By.xpath("//ul[@class='oxd-dropdown-menu']/li");
 	
 	
 	public void launchurl()
@@ -24,26 +25,26 @@ public class loginPage extends BaseClass{
 		driver.get(prop.getProperty("siteurl"));
 	}
 	
-	public String verifyLofinPage()
+	public boolean verifyLofinPage()
 	{
-		return driver.getCurrentUrl();	
+		return utility.isElementDisplayed(driver, logintitle);
 	}
 	
-	public String loginWithValidCredentials()
+	public String loginWithValidCredentials(String loginuser, String loginpassword)
 	{
-		utility.sendkeys(driver, username, prop.getProperty("username"));
-		utility.sendkeys(driver, password, prop.getProperty("password"));
-		utility.threadWait(2000);
-		utility.click(driver, login);
+		utility.sendkeys(driver, username, loginuser);
+		utility.sendkeys(driver, password, loginpassword);
+		utility.threadWait(1000);
+		utility.clickElementwithjs(driver, login);
 		utility.threadWait(2000);
 		return utility.getTextofElement(driver, dashboardtitle);
 	}
 	
 	public boolean logout(int logoutoption)
 	{
-		loginWithValidCredentials();
+		utility.clickElementwithjs(driver, profile);
 		utility.threadWait(1000);
-		List<WebElement> logoutf = driver.findElements(logout);
+		List<WebElement> logoutf = driver.findElements(logoutOption);
 		logoutf.get(logoutoption).click();
 		return utility.isElementDisplayed(driver, logo);
 	}

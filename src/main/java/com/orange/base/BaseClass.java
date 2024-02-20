@@ -15,7 +15,7 @@ import com.constantsData.Constants;
 public class BaseClass {
 	
 	public static Properties prop;
-	public static Properties propdata;
+	public static Properties testdata;
 	public static WebDriver driver;
 	
 	
@@ -32,16 +32,16 @@ public class BaseClass {
 			e.printStackTrace();
 		}
 		
-//		try
-//		{
-//			propdata = new Properties();
-//			FileInputStream testfis = new FileInputStream(System.getProperty("user.dir") + Constants.TESTDATA_PROPERTIES_PATH);
-//			propdata.load(testfis);	
-//		}
-//		catch(FileNotFoundException e)
-//		{
-//			e.printStackTrace();
-//		}
+		try
+		{
+			testdata = new Properties();
+			FileInputStream testfis = new FileInputStream(System.getProperty("user.dir") + Constants.TESTDATA_PROPERTIES_PATH);
+			testdata.load(testfis);	
+		}
+		catch(FileNotFoundException e)
+		{
+			e.printStackTrace();
+		}
 
 		
 		String browsername = prop.getProperty("browser");
@@ -53,7 +53,7 @@ public class BaseClass {
 			options.addArguments("--use-fake-ui-for-media-stream");
 	        options.addArguments("--use-fake-device-for-media-stream");
 	        options.addArguments("disable-geolocation");
-			driver = new ChromeDriver(options);
+			driver = new ChromeDriver();
 			}
 		
 		else if(browsername.equals("firefox"))
